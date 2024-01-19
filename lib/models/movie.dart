@@ -1,3 +1,5 @@
+import 'package:movie_app/models/genre.dart';
+
 const baseImageUrl = "https://image.tmdb.org/t/p/w500";
 
 class MovieModel {
@@ -7,6 +9,7 @@ class MovieModel {
   final String? release_date;
   final String? overview;
   final String? poster_path;
+  late List<Genre>? genres;
   final List<dynamic> genre_ids;
 
   MovieModel({
@@ -15,8 +18,9 @@ class MovieModel {
     this.backdrop_path,
     this.release_date,
     this.overview,
-    required this.genre_ids,
+    this.genres,
     this.poster_path,
+    required this.genre_ids,
   });
 
   Map<String, dynamic> toMap() {

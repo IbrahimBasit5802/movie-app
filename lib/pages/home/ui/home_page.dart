@@ -39,7 +39,11 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context, HomeState state) {
             if (state is HomeLoading || state is SearchLoading) {
               return const Center(
-                child: CupertinoActivityIndicator(),
+                child: CupertinoActivityIndicator(
+                  animating: true,
+                  color: kNavBarColor,
+                  radius: 15,
+                ),
               );
             } else if (state is HomeLoaded) {
               return ListView.builder(
