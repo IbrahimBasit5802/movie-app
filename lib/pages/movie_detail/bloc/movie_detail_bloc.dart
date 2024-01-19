@@ -30,7 +30,6 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
   Future<MovieModel> getGenres(MovieModel movie) async {
     final response = await ApiService.executeRequest(
       [],
-      RequestType.GET,
       EndPoint.MOVIE_GENRES,
     );
 

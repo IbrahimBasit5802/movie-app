@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/theme/colors.dart';
+import 'package:movie_app/util/date_formatter.dart';
 
 class MoviePosterWidget extends StatelessWidget {
   const MoviePosterWidget({Key? key, required this.movie}) : super(key: key);
@@ -43,7 +44,7 @@ class MoviePosterWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "In Theaters ${movie.release_date}",
+                "In Theaters ${movie.release_date!.toMonthDayYear}",
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:movie_app/api/api_service.dart';
 import 'package:movie_app/api/request_url.dart';
 import 'package:movie_app/models/movie.dart';
@@ -33,7 +33,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<List<MovieModel>> getUpcomingMovies() async {
     final response = await ApiService.executeRequest(
       [],
-      RequestType.GET,
       EndPoint.MOVIE_UPCOMING,
     );
 
@@ -51,7 +50,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<List<MovieModel>> searchMovies(String searchText) async {
     final response = await ApiService.executeRequest(
       [searchText],
-      RequestType.GET,
       EndPoint.MOVIE_SEARCH,
     );
 

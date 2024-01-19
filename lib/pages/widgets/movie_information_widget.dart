@@ -31,6 +31,7 @@ class MovieInformationWidget extends StatelessWidget {
               color: Colors.black.withOpacity(0.11),
               indent: 30,
               endIndent: 30,
+              thickness: 2,
             ),
           ),
           const Padding(
@@ -42,15 +43,18 @@ class MovieInformationWidget extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Center(
-              child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.85,
-            child: Text(
-              movie.overview ?? "",
-              style: const TextStyle(
-                fontSize: 14,
-                height: 1.5,
+              child: Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.85,
+              child: Text(
+                movie.overview ?? "",
+                style: const TextStyle(
+                  fontSize: 14,
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.justify,
               ),
-              textAlign: TextAlign.justify,
             ),
           ))
         ],
