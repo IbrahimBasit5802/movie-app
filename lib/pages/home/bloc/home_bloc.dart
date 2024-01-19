@@ -94,9 +94,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> homeMovieSearchEvent(
       HomeMovieSearchEvent event, Emitter<HomeState> emit) async {
     emit(SearchLoading());
-    final temp_movies = await searchMovies(event.searchText);
-    final final_movies = await getGenres(temp_movies);
-    emit(SearchLoaded(final_movies));
+    final tempMovies = await searchMovies(event.searchText);
+    final finalMovies = await getGenres(tempMovies);
+    emit(SearchLoaded(finalMovies));
   }
 
   FutureOr<void> homeMovieSearchCancelButtonClickedEvent(

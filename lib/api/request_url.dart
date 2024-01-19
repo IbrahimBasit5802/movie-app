@@ -2,6 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 String apiKey = dotenv.env['API_KEY']!;
 
+// ignore: constant_identifier_names
 enum EndPoint { MOVIE_SEARCH, MOVIE_GENRES, MOVIE_UPCOMING, MOVIE_TRAILER }
 
 String baseUrl(List<String> query, EndPoint endPoint) {
