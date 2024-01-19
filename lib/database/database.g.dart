@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: library_private_types_in_public_api
-
 part of 'database.dart';
 
 // **************************************************************************
@@ -128,7 +126,7 @@ class _$MovieDao extends MovieDao {
 
   @override
   Future<List<MovieDBModel>> getAllMovies() async {
-    return _queryAdapter.queryList('SELECT * FROM movies',
+    return _queryAdapter.queryList('SELECT * FROM MovieDBModel',
         mapper: (Map<String, Object?> row) => MovieDBModel(
             id: row['id'] as int,
             original_title: row['original_title'] as String,
@@ -140,7 +138,7 @@ class _$MovieDao extends MovieDao {
 
   @override
   Future<MovieDBModel?> getMovieById(int id) async {
-    return _queryAdapter.query('SELECT * FROM movies WHERE id = ?1',
+    return _queryAdapter.query('SELECT * FROM MovieDBModel WHERE id = ?1',
         mapper: (Map<String, Object?> row) => MovieDBModel(
             id: row['id'] as int,
             original_title: row['original_title'] as String,
@@ -153,7 +151,7 @@ class _$MovieDao extends MovieDao {
 
   @override
   Future<int?> countMovies() async {
-    return _queryAdapter.query('SELECT COUNT(*) FROM movies',
+    return _queryAdapter.query('SELECT COUNT(*) FROM MovieDBModel',
         mapper: (Map<String, Object?> row) => row.values.first as int);
   }
 

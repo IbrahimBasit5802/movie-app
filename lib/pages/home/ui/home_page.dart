@@ -59,14 +59,20 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             } else if (state is HomeLoaded) {
-              return ListView.builder(
-                itemCount: state.movies.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final movie = state.movies[index];
-                  return MovieTitleWidget(
-                    movie: movie,
-                  );
+              return RefreshIndicator(
+                onRefresh: () {
+                  _homeBloc.add(HomeFetchMoviesEvent());
+                  return Future.delayed(const Duration(seconds: 2));
                 },
+                child: ListView.builder(
+                  itemCount: state.movies.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final movie = state.movies[index];
+                    return MovieTitleWidget(
+                      movie: movie,
+                    );
+                  },
+                ),
               );
             } else if (state is MoviesError) {
               return Center(

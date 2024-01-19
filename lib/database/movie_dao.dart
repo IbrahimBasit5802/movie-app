@@ -3,13 +3,13 @@ import 'package:movie_app/models/movie_database.dart';
 
 @dao
 abstract class MovieDao {
-  @Query('SELECT * FROM movies')
+  @Query('SELECT * FROM MovieDBModel')
   Future<List<MovieDBModel>> getAllMovies();
 
-  @Query('SELECT * FROM movies WHERE id = :id')
+  @Query('SELECT * FROM MovieDBModel WHERE id = :id')
   Future<MovieDBModel?> getMovieById(int id);
 
-  @Query('SELECT COUNT(*) FROM movies')
+  @Query('SELECT COUNT(*) FROM MovieDBModel')
   Future<int?> countMovies();
 
   @insert

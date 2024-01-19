@@ -68,13 +68,20 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 ),
               );
             } else if (state is MovieDetailLoaded) {
-              return SingleChildScrollView(
-                  child: Column(
-                children: [
-                  MoviePosterWidget(movie: widget.movie),
-                  MovieInformationWidget(movie: widget.movie),
-                ],
-              ));
+              return RefreshIndicator(
+                onRefresh: () {
+                  _movieDetailBloc
+                      .add(MovieDetailInitialEvent(movie: widget.movie));
+                  return Future.delayed(const Duration(seconds: 1));
+                },
+                child: SingleChildScrollView(
+                    child: Column(
+                  children: [
+                    MoviePosterWidget(movie: widget.movie),
+                    MovieInformationWidget(movie: widget.movie),
+                  ],
+                )),
+              );
             } else if (state is MovieDetailError) {
               return Center(
                 child: Text(state.message),
