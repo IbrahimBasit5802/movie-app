@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/pages/home/ui/home_page.dart';
 import 'package:movie_app/pages/movie_detail/ui/movie_detail_page.dart';
+import 'package:movie_app/pages/theater_select/ui/theater_select_page.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -22,5 +23,12 @@ final GoRouter router = GoRouter(
         ),
       ),
     ),
+    GoRoute(
+        path: '/theaterSelect',
+        name: '/theaterSelect',
+        pageBuilder: (context, state) => MaterialPage(
+                child: TheaterSelectPage(
+              movie: state.extra as MovieModel,
+            ))),
   ],
 );

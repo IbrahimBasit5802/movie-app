@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/theme/colors.dart';
 import 'package:movie_app/util/date_formatter.dart';
@@ -63,7 +64,9 @@ class MoviePosterWidget extends StatelessWidget {
               SizedBox(
                 width: 280,
                 child: CupertinoButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.go('/theaterSelect', extra: movie);
+                  },
                   color: kLightBlue,
                   pressedOpacity: 0.8,
                   borderRadius: BorderRadius.circular(10),
