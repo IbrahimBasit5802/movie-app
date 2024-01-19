@@ -22,11 +22,13 @@ List<Widget> _buildGenreChips(List<dynamic> genres) {
     chips.add(
       Chip(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(50),
         ),
+        side: BorderSide.none,
         label: Text(
           genres[i].name,
-          style: const TextStyle(color: Colors.white, fontSize: 12),
+          style: const TextStyle(
+              color: Colors.white, fontSize: 10, fontWeight: FontWeight.w500),
         ),
         backgroundColor: (chipColors.toList()..shuffle()).first,
       ),

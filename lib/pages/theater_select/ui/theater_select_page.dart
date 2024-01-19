@@ -75,6 +75,7 @@ class TheaterSelectPage extends StatelessWidget {
                 children: [
                   const SizedBox(width: 20),
                   ActionChip(
+                    side: BorderSide.none,
                     color: MaterialStateProperty.all(kLightBlue),
                     labelPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -92,6 +93,7 @@ class TheaterSelectPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   ActionChip(
+                    side: BorderSide.none,
                     labelPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                     shape: RoundedRectangleBorder(
@@ -106,6 +108,7 @@ class TheaterSelectPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   ActionChip(
+                    side: BorderSide.none,
                     labelPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                     shape: RoundedRectangleBorder(
@@ -120,6 +123,7 @@ class TheaterSelectPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   ActionChip(
+                    side: BorderSide.none,
                     labelPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                     shape: RoundedRectangleBorder(
@@ -134,6 +138,7 @@ class TheaterSelectPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   ActionChip(
+                    side: BorderSide.none,
                     labelPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                     shape: RoundedRectangleBorder(
