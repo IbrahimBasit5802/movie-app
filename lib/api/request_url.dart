@@ -11,10 +11,8 @@ String baseUrl(List<String> query, EndPoint endPoint) {
       url += "/3/search/movie";
       Map<String, String> parameters = {
         "?api_key=": apiKey,
-        "&language=": "en-US",
         "&query=": query[0],
         "&page=": "1",
-        "&include_adult=": "false",
       };
 
       parameters.forEach((key, value) {
@@ -25,7 +23,6 @@ String baseUrl(List<String> query, EndPoint endPoint) {
       url += "/3/genre/movie/list";
       Map<String, String> parameters = {
         "?api_key=": apiKey,
-        "&language=": "en-US",
       };
 
       parameters.forEach((key, value) {
@@ -36,7 +33,6 @@ String baseUrl(List<String> query, EndPoint endPoint) {
       url += "/3/movie/upcoming";
       Map<String, String> parameters = {
         "?api_key=": apiKey,
-        "&language=": "en-US",
         "&page=": "1",
       };
 
@@ -48,7 +44,6 @@ String baseUrl(List<String> query, EndPoint endPoint) {
       url += "/3/movie/${query[0]}/videos";
       Map<String, String> parameters = {
         "?api_key=": apiKey,
-        "&language=": "en-US",
       };
 
       parameters.forEach((key, value) {
