@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/pages/home/bloc/home_bloc.dart';
-import 'package:movie_app/pages/widgets/app_bar.dart';
+import 'package:movie_app/pages/widgets/app_bar/app_bar.dart';
 import 'package:movie_app/pages/widgets/bottom_nav_bar.dart';
 import 'package:movie_app/pages/widgets/movie_search_result.dart';
 import 'package:movie_app/pages/widgets/movie_title_widget.dart';
@@ -19,6 +19,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late final HomeBloc _homeBloc;
 
+  int _searchResultsCount = 0;
+
+  void updateSearchResultsCount(int count) {
+    setState(() {
+      _searchResultsCount = count;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +39,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: kBackgroundColor,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
-            child: CustomAppBar(homeBloc: _homeBloc)),
+            child: CustomAppBar(
+              homeBloc: _homeBloc,
+              updateSearchResultsCount: updateSearchResultsCount,
+            )),
         bottomNavigationBar: const CustomBottomNavBar(),
         body: BlocConsumer<HomeBloc, HomeState>(
           bloc: _homeBloc,
