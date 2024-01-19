@@ -150,6 +150,12 @@ class _$MovieDao extends MovieDao {
   }
 
   @override
+  Future<int>? countMovies() async {
+    return _queryAdapter.query('SELECT COUNT(*) FROM movies',
+        mapper: (Map<String, Object?> row) => row.values.first as int);
+  }
+
+  @override
   Future<void> insertMovie(MovieDBModel movie) async {
     await _movieDBModelInsertionAdapter.insert(movie, OnConflictStrategy.abort);
   }

@@ -9,6 +9,9 @@ abstract class MovieDao {
   @Query('SELECT * FROM movies WHERE id = :id')
   Future<MovieDBModel?> getMovieById(int id);
 
+  @Query('SELECT COUNT(*) FROM movies')
+  Future<int>? countMovies();
+
   @insert
   Future<void> insertMovie(MovieDBModel movie);
 

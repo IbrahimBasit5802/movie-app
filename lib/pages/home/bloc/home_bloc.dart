@@ -4,8 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movie_app/api/api_service.dart';
 import 'package:movie_app/api/request_url.dart';
+import 'package:movie_app/database/database.dart';
 import 'package:movie_app/models/genre.dart';
 import 'package:movie_app/models/movie.dart';
+import 'package:movie_app/util/convert_to_db.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -41,6 +43,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       response.body['results'].forEach((movie) {
         movies.add(MovieModel.fromMap(movie));
       });
+
+      final database =
+          await $FloorAppDatabase.databaseBuilder('movie_database.db').build();
+      for (var mov in movies) {
+        await database.movieDao.insertMovie(convertMovieModelToDB(mov));
+      }
       return movies;
     } else {
       throw Exception('Failed to load movies');
