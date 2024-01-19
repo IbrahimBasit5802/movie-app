@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/pages/home/bloc/home_bloc.dart';
 import 'package:movie_app/theme/colors.dart';
 
 class CustomAppBar extends StatefulWidget {
+  final HomeBloc homeBloc;
   const CustomAppBar({
     Key? key,
+    required this.homeBloc,
   }) : super(key: key);
 
   @override
@@ -67,7 +70,9 @@ class _CustomAppBarState extends State<CustomAppBar>
           replacement: const Text('Watch'),
           child: TextField(
             controller: _searchController,
-            onSubmitted: (value) {},
+            onChanged: (value) {
+              widget.homeBloc.add(HomeMovieSearchEvent(value));
+            },
             cursorColor: Colors.black,
             decoration: InputDecoration(
               filled: true,
@@ -79,8 +84,10 @@ class _CustomAppBarState extends State<CustomAppBar>
               suffixIcon: IconButton(
                 icon: const Icon(Icons.clear, color: Colors.black),
                 onPressed: () {
-                  _toggleSearchBarVisibility!();
+                  _toggleSearchBarVisibility();
                   _searchController.clear();
+                  widget.homeBloc
+                      .add(HomeMovieSearchCancelButtonClickedEvent());
                 },
               ),
               hintText: 'TV Shows, Movies and more',
@@ -96,7 +103,9 @@ class _CustomAppBarState extends State<CustomAppBar>
         _isSearchBarVisible
             ? Container()
             : IconButton(
-                onPressed: _toggleSearchBarVisibility,
+                onPressed: () {
+                  _toggleSearchBarVisibility();
+                },
                 icon: const Icon(Icons.search, color: Colors.black),
               )
       ],

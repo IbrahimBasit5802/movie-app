@@ -1,6 +1,6 @@
 import "package:flutter_dotenv/flutter_dotenv.dart";
 
-String apiKey = dotenv.env['API_KEY']!;
+String apiKey = 'a567edb127cf818560d54186ed516f50';
 
 enum EndPoint { MOVIE_SEARCH, MOVIE_GENRES, MOVIE_UPCOMING, MOVIE_TRAILER }
 

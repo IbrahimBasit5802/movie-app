@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
-import 'dart:convert';
-
 const baseImageUrl = "https://image.tmdb.org/t/p/w500";
 
 class MovieModel {
@@ -46,11 +43,6 @@ class MovieModel {
       ),
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory MovieModel.fromJson(String source) =>
-      MovieModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   static List<MovieModel> toList(dynamic map) {
     List<MovieModel> list = [];
