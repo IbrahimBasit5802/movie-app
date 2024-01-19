@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app/pages/home/bloc/home_bloc.dart';
 import 'package:movie_app/pages/widgets/app_bar.dart';
 import 'package:movie_app/pages/widgets/bottom_nav_bar.dart';
@@ -90,8 +91,13 @@ class _HomePageState extends State<HomePage> {
                       itemCount: state.movies.length,
                       itemBuilder: (BuildContext context, int index) {
                         final movie = state.movies[index];
-                        return MovieSearchResult(
-                          movie: movie,
+                        return GestureDetector(
+                          onTap: () {
+                            context.go('/movieDetail', extra: movie);
+                          },
+                          child: MovieSearchResult(
+                            movie: movie,
+                          ),
                         );
                       },
                     ),

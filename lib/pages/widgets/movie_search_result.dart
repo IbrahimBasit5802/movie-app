@@ -16,10 +16,21 @@ class MovieSearchResult extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
-              'https://image.tmdb.org/t/p/w500${movie.poster_path}',
+              baseImageUrl + movie.poster_path.toString(),
               height: 100,
               width: 100,
               fit: BoxFit.cover,
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.grey,
+                  child: const Center(
+                    child: Text('Image not available'),
+                  ),
+                );
+              },
             ),
           ),
           const SizedBox(width: 20),

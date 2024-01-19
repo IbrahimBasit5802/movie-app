@@ -18,10 +18,18 @@ class MoviePosterWidget extends StatelessWidget {
       children: [
         if (movie.poster_path!.isNotEmpty)
           Image.network(
-            'https://image.tmdb.org/t/p/w500${movie.poster_path}',
+            baseImageUrl + movie.poster_path.toString(),
             height: screenHeight * 0.6,
             width: screenWidth,
             fit: BoxFit.cover,
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              return Container(
+                height: screenHeight * 0.6,
+                width: screenWidth,
+                color: Colors.grey,
+              );
+            },
           ),
         Align(
           alignment: Alignment.bottomCenter,

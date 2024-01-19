@@ -10,7 +10,7 @@ class GenreChipSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 10,
-      children: _buildGenreChips(genres!),
+      children: _buildGenreChips(genres ?? []),
     );
   }
 }
