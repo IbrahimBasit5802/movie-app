@@ -10,7 +10,7 @@ abstract class MovieDao {
   Future<MovieDBModel?> getMovieById(int id);
 
   @Query('SELECT COUNT(*) FROM movies')
-  Future<int>? countMovies();
+  Future<int?> countMovies();
 
   @insert
   Future<void> insertMovie(MovieDBModel movie);
