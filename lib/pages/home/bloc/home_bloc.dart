@@ -46,8 +46,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final database =
           await $FloorAppDatabase.databaseBuilder('movie_database.db').build();
-      for (var mov in movies) {
-        await database.movieDao.insertMovie(convertMovieModelToDB(mov));
+      if ((await database.movieDao.countMovies()) == 0) {
+        for (var mov in movies) {
+          await database.movieDao.insertMovie(convertMovieModelToDB(mov));
+        }
       }
       return movies;
     } else {
