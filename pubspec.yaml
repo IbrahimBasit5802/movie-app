@@ -48,6 +48,7 @@ dependencies:
   meta: ^1.10.0
   flutter_secure_storage: ^9.0.0
   floor: ^1.4.2
+  sqflite: ^2.3.0
 
 
 dev_dependencies:
