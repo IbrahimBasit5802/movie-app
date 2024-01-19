@@ -73,6 +73,9 @@ class _CustomAppBarState extends State<CustomAppBar>
             onChanged: (value) {
               widget.homeBloc.add(HomeMovieSearchEvent(value));
             },
+            onSubmitted: (value) {
+              widget.homeBloc.add(HomeMovieSearchCompleteEvent());
+            },
             cursorColor: Colors.black,
             decoration: InputDecoration(
               filled: true,

@@ -34,7 +34,7 @@ class MovieInformationWidget extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: const EdgeInsets.fromLTRB(30, 0, 15, 0),
+            padding: EdgeInsets.fromLTRB(30, 0, 15, 0),
             child: Text(
               'Overview',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),

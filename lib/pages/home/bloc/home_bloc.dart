@@ -15,6 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeMovieSearchEvent>(homeMovieSearchEvent);
     on<HomeMovieSearchCancelButtonClickedEvent>(
         homeMovieSearchCancelButtonClickedEvent);
+    on<HomeMovieSearchCompleteEvent>(homeMovieSearchCompleteEvent);
   }
 
   FutureOr<void> homeFetchMoviesEvent(
@@ -83,5 +84,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } catch (e) {
       emit(MoviesError(e.toString()));
     }
+  }
+
+  FutureOr<void> homeMovieSearchCompleteEvent(
+      HomeMovieSearchCompleteEvent event, Emitter<HomeState> emit) {
+    emit(HomeSearchCompleteState());
   }
 }

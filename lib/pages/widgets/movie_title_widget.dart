@@ -18,8 +18,8 @@ class MovieTitleWidget extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.transparent,
             image: DecorationImage(
-                image: NetworkImage(
-                    'https://image.tmdb.org/t/p/w500${movie.backdrop_path}'),
+                image:
+                    NetworkImage(baseImageUrl + movie.backdrop_path.toString()),
                 fit: BoxFit.cover),
             borderRadius: const BorderRadius.all(
               Radius.circular(10),

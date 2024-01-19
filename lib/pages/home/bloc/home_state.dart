@@ -27,3 +27,5 @@ class SearchLoaded extends HomeState {
   final List<MovieModel> movies;
   SearchLoaded(this.movies);
 }
+
+class HomeSearchCompleteState extends HomeState {}

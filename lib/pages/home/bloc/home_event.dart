@@ -11,3 +11,5 @@ class HomeMovieSearchEvent extends HomeEvent {
   final String searchText;
   HomeMovieSearchEvent(this.searchText);
 }
+
+class HomeMovieSearchCompleteEvent extends HomeEvent {}
