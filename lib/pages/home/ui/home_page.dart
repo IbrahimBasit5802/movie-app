@@ -19,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late final HomeBloc _homeBloc;
 
+  // ignore: unused_field
   int _searchResultsCount = 0;
 
   void updateSearchResultsCount(int count) {
