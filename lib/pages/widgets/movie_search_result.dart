@@ -56,9 +56,11 @@ class MovieSearchResult extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 5), // Add space between title and genre
-                const Text(
-                  'Genre', // Replace with actual genre
-                  style: TextStyle(
+                Text(
+                  movie.genres != null
+                      ? movie.genres!.map((genre) => genre.name).join(', ')
+                      : 'No genres',
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
                     fontFamily: 'Poppins',
@@ -68,7 +70,7 @@ class MovieSearchResult extends StatelessWidget {
             ),
           ),
           const Icon(
-            Icons.more_horiz, // Three vertical dots icon
+            Icons.more_horiz, // Three horizontal dots icon
             color: kLightBlue,
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movie_app/api/api_service.dart';
 import 'package:movie_app/api/request_url.dart';
+import 'package:movie_app/models/genre.dart';
 import 'package:movie_app/models/movie.dart';
 
 part 'home_event.dart';
@@ -64,11 +65,38 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+  Future<List<MovieModel>> getGenres(List<MovieModel> movies) async {
+    final response = await ApiService.executeRequest(
+      [],
+      EndPoint.MOVIE_GENRES,
+    );
+
+    if (response!.status == 200) {
+      final List<Genre> genres = [];
+      response.body['genres'].forEach((genre) {
+        genres.add(Genre.fromMap(genre));
+      });
+      for (var movie in movies) {
+        movie.genres = [];
+        for (var genre in genres) {
+          if (movie.genre_ids.contains(genre.id)) {
+            movie.genres!.add(genre);
+          }
+        }
+      }
+
+      return movies;
+    } else {
+      throw Exception('Failed to load genres');
+    }
+  }
+
   FutureOr<void> homeMovieSearchEvent(
       HomeMovieSearchEvent event, Emitter<HomeState> emit) async {
     emit(SearchLoading());
-    final movies = await searchMovies(event.searchText);
-    emit(SearchLoaded(movies));
+    final temp_movies = await searchMovies(event.searchText);
+    final final_movies = await getGenres(temp_movies);
+    emit(SearchLoaded(final_movies));
   }
 
   FutureOr<void> homeMovieSearchCancelButtonClickedEvent(
