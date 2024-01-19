@@ -47,8 +47,12 @@ dependencies:
   intl: ^0.19.0
   meta: ^1.10.0
   flutter_secure_storage: ^9.0.0
+  floor: ^1.4.2
+
 
 dev_dependencies:
+  floor_generator: ^1.4.2
+  build_runner: ^2.1.2
   flutter_test:
     sdk: flutter
 
