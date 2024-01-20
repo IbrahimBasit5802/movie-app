@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/pages/widgets/ticket_screen_app_bar.dart';
 import 'package:movie_app/theme/colors.dart';
@@ -266,7 +267,9 @@ class SeatSelectPage extends StatelessWidget {
                                     letterSpacing: 0.20,
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  context.go('/mqtt', extra: movie);
+                                },
                               ),
                             ),
                           ],

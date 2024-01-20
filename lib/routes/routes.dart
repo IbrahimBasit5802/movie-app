@@ -4,6 +4,7 @@ import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/pages/home/seat_select/ui/seat_select_page.dart';
 import 'package:movie_app/pages/home/ui/home_page.dart';
 import 'package:movie_app/pages/movie_detail/ui/movie_detail_page.dart';
+import 'package:movie_app/pages/mqtt/ui/mqtt_page.dart';
 import 'package:movie_app/pages/theater_select/ui/theater_select_page.dart';
 
 final GoRouter router = GoRouter(
@@ -38,5 +39,13 @@ final GoRouter router = GoRouter(
                 child: SeatSelectPage(
               movie: state.extra as MovieModel,
             ))),
+    GoRoute(
+      path: '/mqtt',
+      name: '/mqtt',
+      pageBuilder: (context, state) => MaterialPage(
+          child: MQTTPage(
+        movie: state.extra as MovieModel,
+      )),
+    )
   ],
 );
