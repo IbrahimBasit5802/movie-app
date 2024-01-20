@@ -37,16 +37,23 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           elevation: 0,
           centerTitle: false,
           actions: [
-            if (_movieDetailBloc.state is MovieTrailerLinkFetched)
-              IconButton(
-                  onPressed: () {
-                    _movieDetailBloc.add(MovieDetailClearButtonClickedEvent(
-                        movie: widget.movie));
-                  },
-                  icon: const Icon(
-                    Icons.clear,
-                    color: Colors.white,
-                  ))
+            BlocBuilder<MovieDetailBloc, MovieDetailState>(
+              bloc: _movieDetailBloc,
+              builder: (context, state) {
+                if (state is MovieTrailerLinkFetched ||
+                    state is MovieTrailerLoadError) {
+                  return IconButton(
+                    onPressed: () {
+                      _movieDetailBloc.add(MovieDetailClearButtonClickedEvent(
+                          movie: widget.movie));
+                    },
+                    icon: const Icon(Icons.clear, color: Colors.white),
+                  );
+                }
+                return const SizedBox
+                    .shrink(); // Return an empty widget if the condition is not met
+              },
+            ),
           ],
           leading: IconButton(
             onPressed: () {

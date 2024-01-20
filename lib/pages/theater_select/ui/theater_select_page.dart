@@ -78,7 +78,7 @@ class TheaterSelectPage extends StatelessWidget {
                   CustomActionChip(
                     label: '5 Mar',
                     textColor: Colors.white,
-                    color: kActionChipColor,
+                    color: kLightBlue,
                   ),
                   SizedBox(width: 10),
                   CustomActionChip(
