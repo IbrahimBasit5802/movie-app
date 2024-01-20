@@ -52,7 +52,7 @@ class _MovieTrailerState extends State<MovieTrailer> {
       children: [
         YoutubePlayerBuilder(
           player: YoutubePlayer(
-            topActions: [],
+            topActions: const [],
             bottomActions: [
               CurrentPosition(),
               ProgressBar(isExpanded: true),
