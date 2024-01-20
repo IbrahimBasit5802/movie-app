@@ -13,6 +13,9 @@ part 'movie_detail_state.dart';
 class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
   MovieDetailBloc() : super(MovieDetailInitial()) {
     on<MovieDetailInitialEvent>(movieDetailInitialEvent);
+    on<MovieDetailWatchTrailerButtonClickedEvent>(
+        movieDetailWatchTrailerButtonClickedEvent);
+    on<MovieDetailClearButtonClickedEvent>(movieDetailClearButtonClickedEvent);
   }
 
   FutureOr<void> movieDetailInitialEvent(
@@ -48,5 +51,41 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
     } else {
       throw Exception('Failed to load genres');
     }
+  }
+
+  Future<String> getTrailerLink(MovieModel movie) async {
+    try {
+      final response = await ApiService.executeRequest(
+        [movie.id],
+        EndPoint.MOVIE_TRAILER,
+      );
+
+      if (response!.status == 200) {
+        final String trailerLink = response.body['results'][0]['key'];
+        return trailerLink;
+      } else {
+        throw Exception('Failed to load trailer link');
+      }
+    } catch (e) {
+      throw Exception('Failed to load trailer link');
+    }
+  }
+
+  FutureOr<void> movieDetailWatchTrailerButtonClickedEvent(
+      MovieDetailWatchTrailerButtonClickedEvent event,
+      Emitter<MovieDetailState> emit) async {
+    emit(MovieDetailTrailerLinkLoading());
+    try {
+      String trailerLink = await getTrailerLink(event.movie);
+      emit(MovieTrailerLinkFetched(trailerLink));
+    } catch (e) {
+      emit(MovieTrailerLoadError(e.toString()));
+    }
+  }
+
+  FutureOr<void> movieDetailClearButtonClickedEvent(
+      MovieDetailClearButtonClickedEvent event,
+      Emitter<MovieDetailState> emit) {
+    emit(MovieDetailLoaded(event.movie));
   }
 }

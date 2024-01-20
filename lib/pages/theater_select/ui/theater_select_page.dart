@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/models/movie.dart';
+import 'package:movie_app/pages/widgets/custom_action_chip.dart';
 import 'package:movie_app/theme/colors.dart';
 import 'package:movie_app/util/date_formatter.dart';
 
@@ -54,10 +55,10 @@ class TheaterSelectPage extends StatelessWidget {
           )),
       body: Container(
         margin: const EdgeInsets.only(top: 100),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
                 'Date',
@@ -73,88 +74,50 @@ class TheaterSelectPage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  const SizedBox(width: 20),
-                  ActionChip(
-                    side: BorderSide.none,
-                    color: MaterialStateProperty.all(kLightBlue),
-                    labelPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    label: const Text(
-                      "5 Mar",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                    onPressed: () {},
+                  SizedBox(width: 20),
+                  CustomActionChip(
+                    label: '5 Mar',
+                    textColor: Colors.white,
+                    color: kActionChipColor,
                   ),
-                  const SizedBox(width: 10),
-                  ActionChip(
-                    side: BorderSide.none,
-                    labelPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    label: const Text(
-                      "6 Mar",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ),
-                    onPressed: () {},
+                  SizedBox(width: 10),
+                  CustomActionChip(
+                    label: '6 Mar',
+                    textColor: Colors.black,
+                    color: kActionChipColor,
                   ),
-                  const SizedBox(width: 10),
-                  ActionChip(
-                    side: BorderSide.none,
-                    labelPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    label: const Text(
-                      "7 Mar",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ),
-                    onPressed: () {},
+                  SizedBox(width: 10),
+                  CustomActionChip(
+                    label: '7 Mar',
+                    textColor: Colors.black,
+                    color: kActionChipColor,
                   ),
-                  const SizedBox(width: 10),
-                  ActionChip(
-                    side: BorderSide.none,
-                    labelPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    label: const Text(
-                      "8 Mar",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ),
-                    onPressed: () {},
+                  SizedBox(width: 10),
+                  CustomActionChip(
+                    label: '8 Mar',
+                    textColor: Colors.black,
+                    color: kActionChipColor,
                   ),
-                  const SizedBox(width: 10),
-                  ActionChip(
-                    side: BorderSide.none,
-                    labelPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    label: const Text(
-                      "9 Mar",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                    ),
-                    onPressed: () {},
+                  SizedBox(width: 10),
+                  CustomActionChip(
+                    label: '9 Mar',
+                    textColor: Colors.black,
+                    color: kActionChipColor,
                   ),
-                  const SizedBox(width: 10),
                 ],
               ),
             ),
+            SizedBox(height: 30),
+            // SingleChildScrollView(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [
+            //       Card(
+            //         shape: ,
+            //       )
+            //     ],
+            //   ),
+            // )
             // Center(
             //   child: Container(
             //     padding: const EdgeInsets.only(right: 20),

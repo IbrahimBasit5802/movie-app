@@ -16,3 +16,15 @@ class MovieDetailLoaded extends MovieDetailState {
   final MovieModel movie;
   MovieDetailLoaded(this.movie);
 }
+
+class MovieDetailTrailerLinkLoading extends MovieDetailState {}
+
+class MovieTrailerLoadError extends MovieDetailState {
+  final String message;
+  MovieTrailerLoadError(this.message);
+}
+
+class MovieTrailerLinkFetched extends MovieDetailState {
+  final String videoId;
+  MovieTrailerLinkFetched(this.videoId);
+}

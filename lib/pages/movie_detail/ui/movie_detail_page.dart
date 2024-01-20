@@ -6,6 +6,7 @@ import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/pages/movie_detail/bloc/movie_detail_bloc.dart';
 import 'package:movie_app/pages/widgets/movie_information_widget.dart';
 import 'package:movie_app/pages/widgets/movie_poster.dart';
+import 'package:movie_app/pages/widgets/movie_trailer.dart';
 import 'package:movie_app/theme/colors.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -19,7 +20,6 @@ class MovieDetailPage extends StatefulWidget {
 class _MovieDetailPageState extends State<MovieDetailPage> {
   late final MovieDetailBloc _movieDetailBloc;
   bool showVideo = false;
-  String videoId = "";
 
   @override
   void initState() {
@@ -36,6 +36,18 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         appBar: AppBar(
           elevation: 0,
           centerTitle: false,
+          actions: [
+            if (_movieDetailBloc.state is MovieTrailerLinkFetched)
+              IconButton(
+                  onPressed: () {
+                    _movieDetailBloc.add(MovieDetailClearButtonClickedEvent(
+                        movie: widget.movie));
+                  },
+                  icon: const Icon(
+                    Icons.clear,
+                    color: Colors.white,
+                  ))
+          ],
           leading: IconButton(
             onPressed: () {
               context.go('/');
@@ -77,11 +89,46 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 child: SingleChildScrollView(
                     child: Column(
                   children: [
-                    MoviePosterWidget(movie: widget.movie),
+                    MoviePosterWidget(
+                      movie: widget.movie,
+                      movieBloc: _movieDetailBloc,
+                    ),
                     MovieInformationWidget(movie: widget.movie),
                   ],
                 )),
               );
+            } else if (state is MovieDetailTrailerLinkLoading) {
+              return SingleChildScrollView(
+                  child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.3),
+                    child: const CupertinoActivityIndicator(
+                      animating: true,
+                      color: kNavBarColor,
+                      radius: 15,
+                    ),
+                  ),
+                  MovieInformationWidget(movie: widget.movie),
+                ],
+              ));
+            } else if (state is MovieTrailerLinkFetched) {
+              return SingleChildScrollView(
+                  child: Column(
+                children: [
+                  MovieTrailer(trailerUrl: state.videoId),
+                  MovieInformationWidget(movie: widget.movie),
+                ],
+              ));
+            } else if (state is MovieTrailerLoadError) {
+              return SingleChildScrollView(
+                  child: Column(
+                children: [
+                  Text(state.message),
+                  MovieInformationWidget(movie: widget.movie),
+                ],
+              ));
             } else if (state is MovieDetailError) {
               return Center(
                 child: Text(state.message),
