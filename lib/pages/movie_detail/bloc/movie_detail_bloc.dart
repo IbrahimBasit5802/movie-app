@@ -61,6 +61,12 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       );
 
       if (response!.status == 200) {
+        for (var i = 0; i < response.body['results'].length; i++) {
+          if (response.body['results'][i]['type'] == 'Trailer') {
+            final String trailerLink = response.body['results'][i]['key'];
+            return trailerLink;
+          }
+        }
         final String trailerLink = response.body['results'][0]['key'];
         return trailerLink;
       } else {
