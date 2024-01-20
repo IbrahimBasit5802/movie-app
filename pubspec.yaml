@@ -80,6 +80,11 @@ flutter:
   assets:
     - config.env
     - assets/images/seats.png
+    - assets/images/hall.jpeg
+    - assets/icons/selected.png
+    - assets/icons/notavailable.png
+    - assets/icons/regular.png
+    - assets/icons/vip.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
