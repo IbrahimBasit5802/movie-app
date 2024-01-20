@@ -16,7 +16,6 @@ class _MovieTrailerState extends State<MovieTrailer> {
   @override
   void initState() {
     super.initState();
-
     initializeTrailerController();
   }
 
@@ -49,19 +48,33 @@ class _MovieTrailerState extends State<MovieTrailer> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.topRight,
       children: [
-        YoutubePlayer(
-          controller: controller,
-          aspectRatio: 0.6,
-        ),
-        IconButton(
-          onPressed: () {
-            setState(() {
-              isPlaying = false;
-            });
+        YoutubePlayerBuilder(
+          player: YoutubePlayer(
+            topActions: [],
+            bottomActions: [
+              CurrentPosition(),
+              ProgressBar(isExpanded: true),
+              RemainingDuration(),
+            ],
+            controller: controller,
+            aspectRatio: 16 / 9,
+          ),
+          builder: (context, player) {
+            return player;
           },
-          icon: const Icon(Icons.clear),
         ),
+        if (controller.value.isPlaying)
+          IconButton(
+            onPressed: () {
+              controller.pause();
+              setState(() {
+                isPlaying = false;
+              });
+            },
+            icon: const Icon(Icons.clear),
+          ),
       ],
     );
   }
