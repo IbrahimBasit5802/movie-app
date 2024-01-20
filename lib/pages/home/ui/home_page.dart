@@ -75,8 +75,14 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             } else if (state is MoviesError) {
-              return Center(
-                child: Text(state.message),
+              return RefreshIndicator(
+                onRefresh: () {
+                  _homeBloc.add(HomeFetchMoviesEvent());
+                  return Future.delayed(const Duration(seconds: 2));
+                },
+                child: Center(
+                  child: Text(state.message),
+                ),
               );
             } else if (state is SearchLoaded) {
               return Column(
